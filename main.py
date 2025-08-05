@@ -24,20 +24,23 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    #player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
-    Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
+    player = Player((SCREEN_WIDTH / 2), (SCREEN_HEIGHT / 2))
     AsteroidField()
 
     # Game loop
     while True:
+        dt = clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill("black")
         for sprite in drawable:
             sprite.draw(screen)
-        dt = clock.tick(60)
         updatable.update(dt)
+        for asteroid in asteriods:
+            if asteroid.collision(player):
+                print("Game over!")
+                return
         pygame.display.flip()
 
 if __name__ == "__main__":
