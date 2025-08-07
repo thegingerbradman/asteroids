@@ -1,7 +1,7 @@
 import pygame
 from constants import(SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_MIN_RADIUS,
                       ASTEROID_KINDS, ASTEROID_SPAWN_RATE,
-                      ASTEROID_MAX_RADIUS)
+                      ASTEROID_MAX_RADIUS, PLAYER_SHOOT_COOLDOWN)
 from asteroid import Asteroid
 from player import Player
 from asteroidfield import AsteroidField
@@ -40,6 +40,7 @@ def main():
         for sprite in drawable:
             sprite.draw(screen)
         updatable.update(dt)
+        player.timer -= dt
         for asteroid in asteriods:
             if asteroid.collision(player):
                 print("Game over!")
