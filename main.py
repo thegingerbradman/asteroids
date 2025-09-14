@@ -29,7 +29,8 @@ def main():
     AsteroidField()
 
     # Game loop
-    while True:
+    game_running = True
+    while game_running:
         dt = clock.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
